@@ -18,7 +18,8 @@ install:
     - c:\Python27\python.exe setup.py install
 
 build_script:
-    - cd c:\projects\volk
+    - mkdir c:\projects\volk\build
+    - cd c:\projects\volk\build
 
     # Without this directory in the %PATH%, compiler tests fail because of missing DLLs
     - set PATH=%PATH%;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin
@@ -30,9 +31,9 @@ build_script:
         -DBoost_UNIT_TEST_FRAMEWORK_LIBRARY_RELEASE:FILEPATH=c:/projects/volk/boost_unit_test_framework-vc120.1.59.0.0/lib/native/address-model-64/lib/boost_unit_test_framework-vc120-mt-1_59.lib \
         -DBoost_INCLUDE_DIR:PATH=c:/projects/volk/boost.1.59.0.0/lib/native/include \
         -DCMAKE_BUILD_TYPE:STRING=Release -DENABLE_ORC:BOOL=OFF -DENABLE_TESTING:BOOL=OFF \
-        .
+        ..
 
-    - msbuild /m /p:Configuration=Release /p:Platform="x64" volk.sln
+    - cmake --build . --config Release
 
     # Create the ZIP file:
     - mkdir bin
