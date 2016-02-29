@@ -33,22 +33,11 @@ build_script:
         -DCMAKE_BUILD_TYPE:STRING=Release -DENABLE_ORC:BOOL=OFF -DENABLE_TESTING:BOOL=OFF \
         ..
 
-    - cmake --build . --config Release
+    - cmake --build . --config Release --target INSTALL
 
     # Create the ZIP file:
-    - mkdir bin
-    - move lib\Release\volk.dll lib\volk.dll
-    - move lib\Release\volk.lib lib\volk.lib
-    - move lib\Release\volk.exp lib\volk.exp
-    - move apps\Release\volk-config-info.exe bin\volk-config-info.exe
-    - move apps\Release\volk_profile.exe bin\volk_profile.exe
-    - copy lib\volk.dll bin\volk.dll
-    - copy c:\projects\volk\boost_chrono-vc120.1.59.0.0\lib\native\address-model-64\lib\boost_chrono-vc120-mt-1_59.dll bin\boost_chrono-vc120-mt-1_59.dll
-    - copy c:\projects\volk\boost_filesystem-vc120.1.59.0.0\lib\native\address-model-64\lib\boost_filesystem-vc120-mt-1_59.dll bin\boost_filesystem-vc120-mt-1_59.dll
-    - copy c:\projects\volk\boost_program_options-vc120.1.59.0.0\lib\native\address-model-64\lib\boost_program_options-vc120-mt-1_59.dll bin\boost_program_options-vc120-mt-1_59.dll
-    - copy c:\projects\volk\boost_system-vc120.1.59.0.0\lib\native\address-model-64\lib\boost_system-vc120-mt-1_59.dll bin\boost_system-vc120-mt-1_59.dll
-    - copy c:\projects\volk\boost_unit_test_framework-vc120.1.59.0.0\lib\native\address-model-64\lib\boost_unit_test_framework-vc120-mt-1_59.dll bin\boost_unit_test_framework-vc120-mt-1_59.dll
-    - 7z a "c:\libvolk-x64.zip" lib\volk.dll lib\volk.lib lib\volk.exp bin include
+    - cd "c:\Program Files"
+    - 7z a "c:\libvolk-x64.zip" volk
 
     # Push it!
     - appveyor PushArtifact c:\libvolk-x64.zip
