@@ -1,4 +1,6 @@
-   
+[![Build status](https://ci.appveyor.com/api/projects/status/2ebms3yhc1okfh3e?svg=true)](https://ci.appveyor.com/project/analogdevicesinc/volk)
+
+
     Copyright 2015 Free Software Foundation, Inc.
    
     This file is part of VOLK
